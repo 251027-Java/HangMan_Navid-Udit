@@ -10,7 +10,8 @@ public class HangMan {
 
         Scanner scan = new Scanner(System.in);
 
-        String word = scan.nextLine();
-        next();
+        String word = "Goofy";
+        
+        
     }
 }
