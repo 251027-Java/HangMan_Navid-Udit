@@ -25,9 +25,17 @@ public class HangMan {
     System.out.println("You have " + numberOfGuesses + " remaning guesses");
     System.out.println();
 
-    guess = getGuess();
-
-    guessIsValid();
+    while (numberOfGuesses > 0 && !isWordComplete()) {
+        guess = getGuess();
+        guessIsValid();
+        System.out.println("Guesses remaining: " + numberOfGuesses);
+    }
+    
+    if (isWordComplete()) {
+        System.out.println("You won! The word was: " + word);
+    } else {
+        System.out.println("Game Over! The word was: " + word);
+    }
 
     
 }
@@ -90,5 +98,14 @@ public class HangMan {
             System.out.print(underscoreArray[i] + " ");
         }
         System.out.println();
+    }
+
+    public static boolean isWordComplete() {
+        for (int i = 0; i < underscoreArray.length; i++) {
+            if (underscoreArray[i] == '_') {
+                return false;
+            }
+        }
+        return true;
     }
 }
