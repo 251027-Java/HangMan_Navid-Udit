@@ -8,28 +8,24 @@ public class HangMan {
     static char guess;
 
     public static void main(String[] args) {
-
     Scanner scan = new Scanner(System.in);
-    String word = getWord();
+
+    word = getWord();
     
     // create a character array that houses each character of the word in 
     // each index of the array
-    char[] charArray = word.toCharArray();
+    charArray = word.toCharArray();
     
-    char[] underscoreArray = underscoreArray(word);
+    underscoreArray = underscoreArray(word);
     
     // initialize the number of guesses remaning to be equal to the length of the word
-    int numberOfGuesses = word.length();
+    numberOfGuesses = word.length();
     
     System.out.println();
     System.out.println("You have " + numberOfGuesses + " remaning guesses");
     guess = getGuess();
-    
-    try {
-        guessIsValid();
-    } catch (Exception e) {
-        guessIsNotValid();
-    }
+
+    guessIsValid();
 
     
 }
@@ -62,16 +58,34 @@ public class HangMan {
     }
 
     public static void guessIsValid() {
+        // need to check if the character is ANYWHERE in the word not at each index
+        boolean found = false;
+
         for (int i = 0; i < charArray.length; i++) {
             if (guess == charArray[i]) {
-                System.out.println("Nice! You guessed a correct letter!");
-            } else if (guess != charArray[i]) {
-                guessIsNotValid();
+                found = true;
+                underscoreArray[i] = guess;
             }
         }
+
+            if (found = true) {
+                System.out.println("Nice! You guessed a correct letter!");
+                displayUnderscores();
+            } else {
+                guessIsNotValid();
+                numberOfGuesses--;
+                getGuess();
+            }
     }
 
     public static void guessIsNotValid() {
         System.out.println("You guessed wrong :/ Try again...");
+    }
+
+    public static void displayUnderscores() {
+        for (int i = 0; i < underscoreArray.length; i++) {
+            System.out.print(underscoreArray[i] + " ");
+        }
+        System.out.println();
     }
 }
