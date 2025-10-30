@@ -23,6 +23,8 @@ public class HangMan {
     
     System.out.println();
     System.out.println("You have " + numberOfGuesses + " remaning guesses");
+    System.out.println();
+
     guess = getGuess();
 
     guessIsValid();
@@ -44,8 +46,10 @@ public class HangMan {
         char[] underscoreArray = new char[word.length()];
         
         for (int i = 0; i < word.length(); i++) {
+            underscoreArray[i] = '_';
             System.out.print("_ ");
         }
+        System.out.println();
 
         return underscoreArray;
     }
@@ -68,14 +72,13 @@ public class HangMan {
             }
         }
 
-            if (found = true) {
-                System.out.println("Nice! You guessed a correct letter!");
-                displayUnderscores();
-            } else {
-                guessIsNotValid();
-                numberOfGuesses--;
-                getGuess();
-            }
+        if (found == true) {
+            System.out.println("Nice! You guessed a correct letter!");
+            displayUnderscores();
+        } else {
+            guessIsNotValid();
+            numberOfGuesses--;
+        }
     }
 
     public static void guessIsNotValid() {
